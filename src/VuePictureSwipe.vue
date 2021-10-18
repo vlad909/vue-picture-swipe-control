@@ -350,12 +350,15 @@ export default {
   methods: {
     removeItem(index = -1) {
       const removeIndex = index >= 0 ? index : this.pswp.getCurrentIndex() // remove by index or current
-      this.pswp.items.splice(removeIndex, 1)
-      // sets a flag that slides should be updated
-      this.pswp.invalidateCurrItems();
-// updates the content of slides
-      this.pswp.updateSize(true)
-      this.$emit('removed', index)
+      const items = this.pswp.items
+      const next_inndex = removeIndex < items.length ? removeIndex + 1 : 0
+      this.pswp.goTo(next_inndex)
+      console.warn('v 1.0.7')
+      this.$nextTick(() => {
+        this.pswp.items.splice(removeIndex, 1)
+        this.pswp.ui.update()
+        this.$emit('removed', index)
+      })
     },
     rotate: function(newAngle) {
       this.angle = this.angle + newAngle
