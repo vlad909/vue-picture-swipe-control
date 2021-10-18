@@ -314,7 +314,7 @@ export default {
         that.pswp = gallery;
 
         // trigger open event after swiper is opened
-        that.$emit('show')
+        that.$refs.bottom.show()
         // that.$refs.bottom.open()
 
         // trigger close event after swiper is closed
