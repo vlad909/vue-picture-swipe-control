@@ -314,9 +314,9 @@ export default {
         that.pswp = gallery;
 
         // trigger open event after swiper is opened
-        that.$refs.bottom.show()
-        // that.$refs.bottom.open()
-
+        if (that.$refs.bottom) {
+          that.$refs.bottom.show()
+        }
         // trigger close event after swiper is closed
         gallery.listen('destroy', () => {
           that.$emit('close')
@@ -325,7 +325,9 @@ export default {
         // close emit
         gallery.listen('close', () => {
           that.$emit('close')
-          that.$refs.bottom.close()
+          if (that.$refs.bottom) {
+            that.$refs.bottom.close()
+          }
         })
       };
 
@@ -349,11 +351,15 @@ export default {
   },
   methods: {
     removeItem(index = -1) {
-      const removeIndex = index >= 0 ? index : this.pswp.getCurrentIndex() // remove by index or current
       const items = this.pswp.items
-      const next_inndex = removeIndex < items.length ? removeIndex + 1 : 0
-      this.pswp.goTo(next_inndex)
-      console.warn('v 1.0.7')
+      const removeIndex = index >= 0 ? index : this.pswp.getCurrentIndex() // remove by index or current
+      if (items.length > 1) {
+        const next_inndex = removeIndex < items.length ? removeIndex + 1 : 0
+        this.pswp.goTo(next_inndex)
+      } else {
+        this.pswp.close()
+      }
+      console.warn('v 1.0.8')
       this.$nextTick(() => {
         this.pswp.items.splice(removeIndex, 1)
         this.pswp.ui.update()
