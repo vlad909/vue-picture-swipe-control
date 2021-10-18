@@ -1,6 +1,6 @@
 {
   "name": "@itadori/vue-picture-swipe-control",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A Vue integration PhotoSwipe image plugin",
   "main": "src/main.js",
   "scripts": {
