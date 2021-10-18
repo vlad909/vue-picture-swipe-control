@@ -19,7 +19,7 @@
     "type": "git",
     "url": "git+https://github.com/vlad909/vue-picture-swipe-control.git"
   },
-  "author": "rap2hpoutre",
+  "author": "vlad909",
   "license": "MIT",
   "dependencies": {
     "photoswipe": "^4.1.2",
