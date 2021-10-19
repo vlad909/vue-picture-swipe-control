@@ -21,7 +21,7 @@ Includes lazy (smart) loading (mobile friendly) and thumbnails.
 ## Install
 
 ```bash
-npm install --save vue-picture-swipe
+npm i @itadori/vue-picture-swipe-control
 ```
 
 ## Usage
@@ -42,7 +42,7 @@ You can using it inline:
 Just remember to register the component:
 
 ```javascript
-import VuePictureSwipe from 'vue-picture-swipe';
+import VuePictureSwipe from '@itadori/vue-picture-swipe-control';
 Vue.component('vue-picture-swipe', VuePictureSwipe);
 
 new Vue({
@@ -88,7 +88,7 @@ The attrs 'w' and 'h' are not required now (Hooray!!!) (default w = 0; h = 0)
 Edit `resources/assets/js/app.js` and add this just before the `new Vue` lines.
 
 ```javascript
-import VuePictureSwipe from 'vue-picture-swipe';
+import VuePictureSwipe from '@itadori/vue-picture-swipe-control';
 Vue.component('vue-picture-swipe', VuePictureSwipe);
 ```
 
