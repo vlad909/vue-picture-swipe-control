@@ -12,7 +12,7 @@
           v-bind:key="index">
         <a
             v-show="nbThumbnailsDisplayed === -1 || index < nbThumbnailsDisplayed"
-            :href="item.src" itemprop="contentUrl" :data-size="'' + item.w + 'x' + item.h" :title="item.title">
+            :href="item.src" itemprop="contentUrl" :data-size="'' + (item.w || 0) + 'x' + (item.h || 0)" :title="item.title">
           <img :src="item.thumbnail" :alt="item.alt" itemprop="thumbnail"/>
         </a>
       </figure>
@@ -376,7 +376,6 @@ export default {
       } else {
         this.pswp.close()
       }
-      console.warn('v 1.0.8')
       this.$nextTick(() => {
         this.pswp.items.splice(removeIndex, 1)
         this.pswp.ui.update()
