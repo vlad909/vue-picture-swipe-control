@@ -53,7 +53,7 @@
           </button>
           <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)" @click='resetAngle'>
           </button>
-          <component ref="bottom" @remove="removeItem" :is="bottomChild"></component>
+          <component ref="bottom" @get-current-index="getCurrenIndex" @remove="removeItem" :is="bottomChild"></component>
           <div class="pswp__caption">
             <div class="pswp__caption__center"></div>
           </div>
@@ -329,6 +329,18 @@ export default {
             that.$refs.bottom.close()
           }
         })
+        // Before slides change
+        // (before the content is changed, but after navigation)
+        // Update UI here (like "1 of X" indicator)
+        gallery.listen('beforeChange', () => {
+          that.getCurrenIndex('before-change')
+        })
+
+        // After slides change
+        // (after content changed)
+        gallery.listen('afterChange', () => {
+          that.getCurrenIndex('after-change')
+        })
       };
 
       // loop through all gallery elements and bind events
@@ -350,6 +362,11 @@ export default {
 
   },
   methods: {
+    getCurrenIndex(event = 'get-current-index'){
+      const index = this.pswp.getCurrentIndex()
+      this.$emit(event, index)
+      // return index
+    },
     removeItem(index = -1) {
       const items = this.pswp.items
       const removeIndex = index >= 0 ? index : this.pswp.getCurrentIndex() // remove by index or current
