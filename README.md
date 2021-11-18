@@ -130,7 +130,7 @@ this.$refs.pictureSwipe.pswp
 | Close  | none  | @close | Emitted after gallery closes |
 | beforeChange | none | @before-change | Emitted before the content is changed, but after navigation|
 | afterChange | none | @after-change | Emitted after slides changed |
-| Item removed | none | @removed | Emitted after slides has been removed. The event returns a removed index |
+| Item removed | none | @removed | Emitted after slides has been removed. The event returns a removed index and full object|
 
 
 ## Why?

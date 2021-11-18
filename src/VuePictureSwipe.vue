@@ -370,6 +370,7 @@ export default {
     removeItem(index = -1) {
       const items = this.pswp.items
       const removeIndex = index >= 0 ? index : this.pswp.getCurrentIndex() // remove by index or current
+      const removing_image = items[removeIndex]
       if (items.length > 1) {
         const next_inndex = removeIndex < items.length ? removeIndex + 1 : 0
         this.pswp.goTo(next_inndex)
@@ -379,7 +380,7 @@ export default {
       this.$nextTick(() => {
         this.pswp.items.splice(removeIndex, 1)
         this.pswp.ui.update()
-        this.$emit('removed', index)
+        this.$emit('removed', index, removing_image)
       })
     },
     rotate: function(newAngle) {
