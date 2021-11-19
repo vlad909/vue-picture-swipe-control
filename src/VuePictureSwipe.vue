@@ -374,7 +374,7 @@ export default {
       const removing_image = items[removeIndex]
       if (items.length > 1) {
         const next_inndex = removeIndex < items.length ? removeIndex + 1 : 0
-        this.pswp.goTo(next_inndex)
+        this.pswp.next()
       } else {
         this.pswp.close()
       }
@@ -382,7 +382,6 @@ export default {
       this.$nextTick(() => {
         this.pswp.invalidateCurrItems()
         this.pswp.updateSize(true)
-        this.pswp.goTo(removeIndex)
         this.pswp.ui.update()
         this.$forceUpdate() // i am sorry, but i have no chooce
         this.$emit('removed', removeIndex, removing_image)
