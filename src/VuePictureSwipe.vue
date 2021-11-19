@@ -368,6 +368,7 @@ export default {
       // return index
     },
     removeItem(index = -1) {
+      console.log('delete has initiated')
       const items = this.pswp.items
       const removeIndex = index >= 0 ? index : this.pswp.getCurrentIndex() // remove by index or current
       const removing_image = items[removeIndex]
@@ -377,10 +378,14 @@ export default {
       } else {
         this.pswp.close()
       }
+      this.pswp.items.splice(removeIndex, 1)
       this.$nextTick(() => {
-        this.pswp.items.splice(removeIndex, 1)
+        this.pswp.invalidateCurrItems()
+        this.pswp.updateSize(true)
+        this.pswp.goTo(removeIndex)
         this.pswp.ui.update()
-        this.$emit('removed', index, removing_image)
+        this.$forceUpdate() // i am sorry, but i have no chooce
+        this.$emit('removed', removeIndex, removing_image)
       })
     },
     rotate: function(newAngle) {
