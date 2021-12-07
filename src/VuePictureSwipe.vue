@@ -371,7 +371,10 @@ export default {
       console.log('delete has initiated')
       const items = this.pswp.items
       const removeIndex = index >= 0 ? index : this.pswp.getCurrentIndex() // remove by index or current
+      console.log('071221')
       const removing_image = items[removeIndex]
+      const original_item_by_id = removeIndex ? items[removeIndex] : {}
+      const {removable = false} = original_item_by_id || {}
       if (items.length > 1) {
         const next_inndex = removeIndex < items.length ? removeIndex + 1 : 0
         this.pswp.next()
