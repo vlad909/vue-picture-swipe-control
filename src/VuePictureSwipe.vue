@@ -368,28 +368,29 @@ export default {
       // return index
     },
     removeItem(index = -1) {
-      console.log('delete has initiated')
       const items = this.pswp.items
       const removeIndex = index >= 0 ? index : this.pswp.getCurrentIndex() // remove by index or current
-      console.log('071221')
+      console.log('071221v1')
       const removing_image = items[removeIndex]
       const original_item_by_id = removeIndex ? items[removeIndex] : {}
       const {removable = false} = original_item_by_id || {}
       if (removable) {
-      if (items.length > 1) {
-        const next_inndex = removeIndex < items.length ? removeIndex + 1 : 0
-        this.pswp.next()
+        if (items.length > 1) {
+          const next_inndex = removeIndex < items.length ? removeIndex + 1 : 0
+          this.pswp.next()
+        } else {
+          this.pswp.close()
+        }
+        this.pswp.items.splice(removeIndex, 1)
+        this.$nextTick(() => {
+          this.pswp.invalidateCurrItems()
+          this.pswp.updateSize(true)
+          this.pswp.ui.update()
+          this.$forceUpdate() // i am sorry, but i have no chooce
+          this.$emit('removed', removeIndex, removing_image)
+        })
       } else {
-        this.pswp.close()
-      }
-      this.pswp.items.splice(removeIndex, 1)
-      this.$nextTick(() => {
-        this.pswp.invalidateCurrItems()
-        this.pswp.updateSize(true)
-        this.pswp.ui.update()
-        this.$forceUpdate() // i am sorry, but i have no chooce
-        this.$emit('removed', removeIndex, removing_image)
-      })
+        this.$emit('denayed', original_item_by_id)
       }
     },
     rotate: function(newAngle) {
