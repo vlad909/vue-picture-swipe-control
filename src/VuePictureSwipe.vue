@@ -375,6 +375,7 @@ export default {
       const removing_image = items[removeIndex]
       const original_item_by_id = removeIndex ? items[removeIndex] : {}
       const {removable = false} = original_item_by_id || {}
+      if (removable) {
       if (items.length > 1) {
         const next_inndex = removeIndex < items.length ? removeIndex + 1 : 0
         this.pswp.next()
@@ -389,6 +390,7 @@ export default {
         this.$forceUpdate() // i am sorry, but i have no chooce
         this.$emit('removed', removeIndex, removing_image)
       })
+      }
     },
     rotate: function(newAngle) {
       this.angle = this.angle + newAngle
