@@ -370,9 +370,9 @@ export default {
     removeItem(index = -1) {
       const items = this.pswp.items
       const removeIndex = index >= 0 ? index : this.pswp.getCurrentIndex() // remove by index or current
-      console.log('071221v1')
+      console.log('071221v2')
       const removing_image = items[removeIndex]
-      const original_item_by_id = removeIndex ? items[removeIndex] : {}
+      const original_item_by_id = removeIndex ? this.items[removeIndex] : {}
       const {removable = false} = original_item_by_id || {}
       if (removable) {
         if (items.length > 1) {
