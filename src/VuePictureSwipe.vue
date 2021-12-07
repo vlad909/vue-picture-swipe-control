@@ -390,7 +390,7 @@ export default {
           this.$emit('removed', removeIndex, removing_image)
         })
       } else {
-        this.$emit('denayed', original_item_by_id)
+        this.$emit('deny', original_item_by_id)
       }
     },
     rotate: function(newAngle) {
