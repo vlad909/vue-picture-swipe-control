@@ -373,6 +373,7 @@ export default {
       console.log('071221v2')
       const removing_image = items[removeIndex]
       const original_item_by_id = removeIndex ? this.items[removeIndex] : {}
+      console.log(original_item_by_id, 'original_item_by_id')
       const {removable = false} = original_item_by_id || {}
       if (removable) {
         if (items.length > 1) {
@@ -390,7 +391,7 @@ export default {
           this.$emit('removed', removeIndex, removing_image)
         })
       } else {
-        this.$emit('deny', original_item_by_id)
+        this.$emit('deny', removeIndex)
       }
     },
     rotate: function(newAngle) {
