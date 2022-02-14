@@ -53,7 +53,7 @@
           </button>
           <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)" @click='resetAngle'>
           </button>
-          <component ref="bottom" @get-current-index="getCurrenIndex" @remove="removeItem" :is="bottomChild"></component>
+          <component v-if="bottomChild" ref="bottom" @get-current-index="getCurrenIndex" @remove="removeItem" :is="bottomChild"></component>
           <div class="pswp__caption">
             <div class="pswp__caption__center"></div>
           </div>
@@ -73,7 +73,7 @@ export default {
   props: {
     bottomChild: {
       type: [String, Object],
-      default: `<div>`
+      default: ``
     },
     items: {
       default: [
