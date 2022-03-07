@@ -374,7 +374,7 @@ export default {
       const removing_image = items[removeIndex]
       const original_item_by_id = removeIndex ? this.items[removeIndex] : {}
       console.log(original_item_by_id, 'original_item_by_id')
-      const {removable = false} = original_item_by_id || {}
+      const {removable = true} = original_item_by_id || {}
       if (removable) {
         if (items.length > 1) {
           const next_inndex = removeIndex < items.length ? removeIndex + 1 : 0
